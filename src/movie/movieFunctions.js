@@ -9,3 +9,15 @@ exports.addMovie = async (movieObj) => {
         console.log(error)
     }
 }
+
+exports.deleteMovie = async (movieObj) => {
+    try {
+        await Movie.sync()
+        await Movie.destroy({
+            where: movieObj
+        })
+        console.log(`Successfully deleted ${movieObj.title}`)
+    } catch (error) {
+        console.log(error)
+    }
+}
