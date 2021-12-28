@@ -21,3 +21,27 @@ exports.deleteMovie = async (movieObj) => {
         console.log(error)
     }
 }
+
+exports.editTitle = async (movieObj) => {
+    try {
+        await Movie.sync()
+        await Movie.update({title: movieObj.new }, {
+            where: {title: movieObj.title}
+        })
+        console.log(`Successfully updated ${movieObj.title} to ${movieObj.new}`)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+exports.editActor = async (movieObj) => {
+    try {
+        await Movie.sync()
+        await Movie.update({actor: movieObj.new }, {
+            where: {actor: movieObj.actor}
+        })
+        console.log(`Successfully updated ${movieObj.actor} to ${movieObj.new}`)
+    } catch (error) {
+        console.log(error)
+    }
+}
