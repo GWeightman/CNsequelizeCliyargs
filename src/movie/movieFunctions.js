@@ -45,3 +45,14 @@ exports.editActor = async (movieObj) => {
         console.log(error)
     }
 }
+
+exports.wholeTable = async () => {
+    try {
+        // await Movie.sync()
+        const movieList = await Movie.findAll()
+        console.log(movieList.every(movieList => movieList instanceof Movie))
+        console.log("Movie List", JSON.stringify(movieList, null, 2))
+    } catch (error) {
+        console.log(error)
+    }
+}

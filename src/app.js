@@ -1,5 +1,5 @@
 const yargs = require("yargs")
-const { addMovie, deleteMovie, editTitle, editActor } = require("./movie/movieFunctions")
+const { addMovie, deleteMovie, editTitle, editActor, wholeTable } = require("./movie/movieFunctions")
 
 const app = async (args) => {
     try {
@@ -18,6 +18,9 @@ const app = async (args) => {
         else if (args.editactor) { /*--editactor --actor "actor" --new "newactor"*/
             const movieObj = {actor: args.actor, new: args.new}
             await editActor(movieObj)
+        }
+        else if (args.list) {
+            await wholeTable()
         }
     } catch (error) {
         console.log(error)
