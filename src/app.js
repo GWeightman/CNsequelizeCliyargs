@@ -1,5 +1,6 @@
 const yargs = require("yargs")
 const { addMovie, deleteMovie, editTitle, editActor, wholeTable } = require("./movie/movieFunctions")
+const { addBook, deleteBook, editBook, editAuthor, wholebookTable } = require("./book/bookFunctions")
 
 const app = async (args) => {
     try {
@@ -19,8 +20,27 @@ const app = async (args) => {
             const movieObj = {actor: args.actor, new: args.new}
             await editActor(movieObj)
         }
-        else if (args.list) {
+        else if (args.movielist) {
             await wholeTable()
+        }
+        else if (args.addbook) { /*--addbook --title "title" --author "author"*/
+            const bookObj = {title: args.title, author: args.author}
+            await addBook(bookObj)
+        }
+        else if (args.deletebook) { /*--deletebook --title "title"*/
+            const bookObj = {title: args.title}
+            await deleteBook(bookObj)
+        }
+        else if (args.editbook) { /*--editbook --title "title" --new "newtitle"*/
+            const bookObj = {title: args.title, new: args.new}
+            await editBook(bookObj)
+        }
+        else if (args.editauthor) { /*--editauthor --author "author" --new "newauthor"*/
+            const bookObj = {author: args.author, new: args.new}
+            await editAuthor(bookObj)
+        }
+        else if (args.booklist) {
+            await wholebookTable()
         }
     } catch (error) {
         console.log(error)
